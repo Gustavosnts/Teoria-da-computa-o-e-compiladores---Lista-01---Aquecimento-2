@@ -1,0 +1,32 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class ControleAeP {
+    public static void main(String[] args) {
+
+        Set<String> permissoesRH = new HashSet<>(Arrays.asList("ver_salario", "editar_perfil"));
+        Set<String> permissoesTI = new HashSet<>(Arrays.asList("acesso_servidor", "editar_perfil"));
+
+        Set<String> totalPermissoesFuncionario = new TreeSet<>(permissoesRH);
+        totalPermissoesFuncionario.addAll(permissoesTI);
+
+        Set<String> requisitosArquivoConfidencial = new HashSet<>(Arrays.asList("acesso_servidor", "ver_salario"));
+
+        boolean temAcesso = totalPermissoesFuncionario.containsAll(requisitosArquivoConfidencial);
+        
+        System.out.println("\n1. Conjunto total de permissoes (Uniao RH + TI):");
+        System.out.println(totalPermissoesFuncionario); 
+
+        System.out.println("\n2. Requisitos para o Arquivo Confidencial:");
+        System.out.println(requisitosArquivoConfidencial);
+
+        System.out.println("\nO funcionario tem acesso ao arquivo?");
+        if (temAcesso) {
+            System.out.println("SIM.");
+        } else {
+            System.out.println("NAO.");
+        }
+    }
+}
