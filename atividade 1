@@ -1,0 +1,33 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class FiltroCompilador {
+    public static void main(String[] args) {
+        
+        Set<String> reservadas = new HashSet<>(Arrays.asList(
+            "if", "else", "while", "for", "return", "int", 
+            "System", "out", "print", "public", "class"
+        ));
+
+        Set<String> codigo = new HashSet<>(Arrays.asList(
+            "public", "class", "StarRectangle", "void", "printRectangle", 
+            "int", "n", "for", "i", "j", "System", "out", "print", 
+            "println", "printBottonLeftTriangle", "printTopRightTriangle", 
+            "if", "else"
+        ));
+
+        Set<String> intersecao = new TreeSet<>(codigo); 
+        intersecao.retainAll(reservadas);
+
+        Set<String> diferenca = new TreeSet<>(codigo);
+        diferenca.removeAll(reservadas);
+
+        System.out.println("Palavras Reservadas (Interseção):");
+        System.out.println(intersecao);
+
+        System.out.println("Identificadores (Diferença):");
+        System.out.println(diferenca);
+    }
+}
