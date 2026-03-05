@@ -1,0 +1,43 @@
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class ValidacaoAlfabeto {
+    public static void main(String[] args) {
+     
+        Set<Character> alfabeto = new HashSet<>();
+        for (char c = 'a'; c <= 'z'; c++) {
+            alfabeto.add(c);
+        }
+        alfabeto.add(' '); 
+
+        String fraseParaTestar = "Teoria da computação e compiladores";
+
+        validarCadeia(alfabeto, fraseParaTestar);
+    }
+
+    public static void validarCadeia(Set<Character> alfabeto, String entrada) {
+        
+        Set<Character> caracteresEntrada = new HashSet<>();
+        for (char c : entrada.toCharArray()) {
+            caracteresEntrada.add(c);
+        }
+
+        boolean eValida = alfabeto.containsAll(caracteresEntrada);
+
+        System.out.println("   VALIDACAO: ALFABETO RESTRITO");
+        System.out.println("Frase: \"" + entrada + "\"");
+        
+        if (eValida) {
+            System.out.println("\nRESULTADO: Cadeia VALIDA.");
+        } else {
+
+            Set<Character> invalidos = new TreeSet<>(caracteresEntrada);
+            invalidos.removeAll(alfabeto);
+            
+            System.out.println("\nRESULTADO: Cadeia INVALIDA.");
+            System.out.println("Simbolos nao permitidos encontrados: " + invalidos);
+            System.out.println("(Maiusculas e acentos nao serao aceitos pelo sistema)");
+        }
+    }
+}
