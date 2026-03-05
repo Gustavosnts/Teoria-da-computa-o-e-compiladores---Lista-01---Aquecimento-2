@@ -1,0 +1,25 @@
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class AmigosemComum {
+    public static void main(String[] args) {
+ 
+        Set<String> usuarioA = new HashSet<>(Arrays.asList("Python", "Jogos", "Música", "IA"));
+        Set<String> usuarioB = new HashSet<>(Arrays.asList("Java", "IA", "Música", "Caminhada"));
+
+        Set<String> intersecao = new TreeSet<>(usuarioA);
+        intersecao.retainAll(usuarioB);
+
+        Set<String> sugestoesParaA = new TreeSet<>(usuarioB);
+        sugestoesParaA.removeAll(usuarioA);
+        
+        System.out.println("\n1. Interesses em comum (Intersecao):");
+        System.out.println(intersecao); 
+
+        System.out.println("\n2. Sugestoes para o Usuario A (Diferenca B - A):");
+        System.out.println(sugestoesParaA); 
+        
+    }
+}
